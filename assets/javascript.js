@@ -14,3 +14,24 @@
   var destination="";
   var time="";
   var frequency="";
+
+    database = firebase.database();
+
+  $("#submitForm").on("click", function(event){
+    event.preventDefault();
+
+    train = $("#trainNameInput").val().trim();
+    destination = $("#destinationInput").val().trim();
+    time = $("#trainTimeInput").val().trim();
+    frequency = $("#frequencyInput").val().trim();
+
+    database.ref().push({
+      "train": train,
+      "destination": destination,
+      "time": time,
+      "frequency": frequency
+    });
+
+    //addRow(empName, empRole, empStart, empRate);
+
+  })
