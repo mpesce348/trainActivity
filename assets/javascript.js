@@ -1,4 +1,7 @@
-  // Initialize Firebase
+  $( document ).ready(function() {
+    console.log( "ready" );
+});
+   // Initialize Firebase
   var config = {
       apiKey: "AIzaSyCiyoAnxNTTLkpTi9s8jE2UL77rB4r3o2I",
       authDomain: "train-activity-db8ad.firebaseapp.com",
@@ -45,19 +48,25 @@
       var valKeys = Object.keys(snapVal);
       var objectLength = valKeys.length - 1;
 
-      $("emptyTable").empty();
+      $("#emptyTable").empty();
 
       valKeys.forEach(function(lineItem) {
           console.log(snapVal[lineItem].train, snapVal[lineItem]
               .destination, snapVal[lineItem].time, snapVal[lineItem]
               .frequency);
+          addRow(snapVal[lineItem].train, snapVal[lineItem]
+              .destination, snapVal[lineItem].time, snapVal[lineItem]
+              .frequency);
       })
   })
 
-  function addRow(trn, dest, tme, freq) {
-      var convertedFreq = moment(new Date(freq));
 
-      $("emptyTable").append(
+
+  function addRow(trn, dest, tme, freq) {
+      // var convertedFreq = moment(new Date(freq));
+      // var minutesAway = -(moment(convertedFreq).diff(moment(), "months"));
+
+      $("#emptyTable").append(
           '<tr>' +
           '<td>' + trn + '</td>' +
           '<td>' + dest + '</td>' +
