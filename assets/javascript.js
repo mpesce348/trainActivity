@@ -1,3 +1,4 @@
+ 
   $( document ).ready(function() {
     console.log( "ready" );
 });
@@ -38,7 +39,7 @@
               "frequency": frequency
           });
 
-      })
+        })
       //begins function to take a snapshot of the database on 
       //any changed to the value
   database.ref().on("value", function(snap) {
@@ -46,10 +47,11 @@
       var snapVal = snap.val();
       //sets variable as key element of the object snapVal
       var valKeys = Object.keys(snapVal);
+      //sets variable as the number of valKeys minus 1
       var objectLength = valKeys.length - 1;
-
+      //locates table with id emptyTable and epties it
       $("#emptyTable").empty();
-
+      //starts functions lineItem which 
       valKeys.forEach(function(lineItem) {
           console.log(snapVal[lineItem].train, snapVal[lineItem]
               .destination, snapVal[lineItem].time, snapVal[lineItem]
@@ -58,6 +60,10 @@
               .destination, snapVal[lineItem].time, snapVal[lineItem]
               .frequency);
       })
+          $(".input-group").empty();
+          // $("#destinationInput").empty();
+          // $("#trainTimeInput").empty();
+          // $("#frequencyInput").empty();
   })
 
 
@@ -71,7 +77,7 @@
           '<td>' + trn + '</td>' +
           '<td>' + dest + '</td>' +
           '<td>' + tme + '</td>' +
-          '<td>' + freq + '</td>' +
+          '<td>Every ' + freq + ' minutes</td>' +
           '</tr>'
       );
   }
