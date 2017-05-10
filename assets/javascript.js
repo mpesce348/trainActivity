@@ -36,8 +36,8 @@
               "train": train,
               "destination": destination,
               "time": time,
-              "frequency": frequency
-          });
+              "frequency": frequency,
+             });
 
         })
       //begins function to take a snapshot of the database on 
@@ -51,8 +51,9 @@
       var objectLength = valKeys.length - 1;
       //locates table with id emptyTable and epties it
       $("#emptyTable").empty();
-      //starts functions lineItem which 
+      //starts functions lineItem  
       valKeys.forEach(function(lineItem) {
+        //console logs 
           console.log(snapVal[lineItem].train, snapVal[lineItem]
               .destination, snapVal[lineItem].time, snapVal[lineItem]
               .frequency);
@@ -60,24 +61,45 @@
               .destination, snapVal[lineItem].time, snapVal[lineItem]
               .frequency);
       })
+      //this is supposed to empty the form data when the on-click
+      //function occurrs. currently non-functional.
           $(".input-group").empty();
           // $("#destinationInput").empty();
           // $("#trainTimeInput").empty();
           // $("#frequencyInput").empty();
   })
-
-
+  
 
   function addRow(trn, dest, tme, freq) {
-      // var convertedFreq = moment(new Date(freq));
-      // var minutesAway = -(moment(convertedFreq).diff(moment(), "months"));
+      var todayDate = moment(Date());
+      console.log(todayDate);
+      var todayTime = moment();
+      console.log(todayTime);
+      var firstTimeConverted = moment(time, "HH:HH").subtract(1, "years");
+      console.log(firstTimeConverted);
+      var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+      console.log(diffTime);
+      var tRemainder = diffTime % frequency;
+      console.log(tRemainder);
+      var minutesAway = frequency - tRemainder;
+      console.log(minutesAway);
+      // var  = -(moment(nextArrival).diff(moment(), "minutes"));
+      // var nextArrival = 
 
+
+      //selects div with id emptyTable and appends  a new table row
+      //with new tablecell with the objects for the train name,
+      //destination, time and frequency. It is also supposed to append 
+      //the new values for the calculated times for arrival but that
+      //isnt working right now
       $("#emptyTable").append(
           '<tr>' +
           '<td>' + trn + '</td>' +
           '<td>' + dest + '</td>' +
           '<td>' + tme + '</td>' +
           '<td>Every ' + freq + ' minutes</td>' +
+          '<td>' + "nextArrival" + '</td>' +
+          '<td>' + minutesAway + '</td>' +
           '</tr>'
       );
   }
